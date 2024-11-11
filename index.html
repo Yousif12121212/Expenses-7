@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منظم المصاريف</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').then(reg => {
+        console.log('Service Worker مسجل', reg);
+      }).catch(err => {
+        console.error('Service Worker لم يسجل', err);
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>منظم المصاريف</h2>
+      <nav>
+        <a href="#overview">الملخص</a>
+        <a href="#expenses">إضافة مصاريف</a>
+        <a href="#saved">المحفوظات</a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <section id="overview">
+        <h2>الملخص الشهري</h2>
+        <p>المتبقي من الأكل: <span id="remaining-food">0</span> ريال</p>
+        <p>المتبقي من البترول: <span id="remaining-fuel">0</span> ريال</p>
+        <p>المتبقي من المصروف الشهري: <span id="remaining-monthly">0</span> ريال</p>
+      </section>
+      <section id="expenses">
+        <h2>إضافة ميزانية ومصاريف</h2>
+        
+        <label for="food-budget">ميزانية الأكل:</label>
+        <input type="number" id="food-budget" placeholder="ادخل ميزانية الأكل">
+        <button onclick="setBudget('food')">تعيين ميزانية الأكل</button>
+        
+        <label for="food-amount">مصاريف الأكل:</label>
+        <input type="number" id="food-amount">
+        <button onclick="addExpense('food')">إضافة مصروف الأكل</button>
+
+        <label for="fuel-budget">ميزانية البترول:</label>
+        <input type="number" id="fuel-budget" placeholder="ادخل ميزانية البترول">
+        <button onclick="setBudget('fuel')">تعيين ميزانية البترول</button>
+        
+        <label for="fuel-amount">مصاريف البترول:</label>
+        <input type="number" id="fuel-amount">
+        <button onclick="addExpense('fuel')">إضافة مصروف البترول</button>
+
+        <label for="monthly-budget">ميزانية المصروف الشهري:</label>
+        <input type="number" id="monthly-budget" placeholder="ادخل ميزانية المصروف">
+        <button onclick="setBudget('monthly')">تعيين ميزانية المصروف الشهري</button>
+        
+        <label for="monthly-amount">المصروف الشهري:</label>
+        <input type="number" id="monthly-amount">
+        <button onclick="addExpense('monthly')">إضافة مصروف شهري</button>
+      </section>
+    </main>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
